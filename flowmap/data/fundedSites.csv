@@ -1,0 +1,41 @@
+﻿Site ID,Site,Basin,Description,Designation,Notes,Funded
+3,South Fork Edisto Headwaters,Edisto,Mainstem or Beech Creek,"WU/Regulation, SW Assessments, DNR Fisheries",Real Time Discharge,Yes
+5,North Fork Edisto Headwaters,Edisto,"Mainstem, Chinquapin Creek or Lightwood Knot Creek","WU/Regulation, SW Assessments",Real Time Discharge,Yes
+7,Shaw Creek,Edisto,Tributary to South Fork Edisto,"WU/Regulation, SW Assessments",Real Time Discharge,Yes
+12,Thompson Creek,Pee Dee,Tributary to Pee Dee,"SW Assessments, major tributary to Pee Dee River",Real Time Discharge,Yes
+13,Black River,Pee Dee,"Mainstem, SC 41","DOT, Flood Forecasting",Real Time Discharge,Yes
+16,Little Salkehatchie River,Salkehatchie,Tributary to Salkehatchie,"DNR Fisheries, SW Assessments, Flood Frequency, General lack of streamflow data in basin",Real Time Discharge,Yes
+17,Salkehatchie River,Salkehatchie,Upper Salkehatchie Mainstem,"DNR Fisheries, SW Assessments, Flood Frequency, General lack of streamflow data in basin",Real Time Discharge,Yes
+19,Twelvemile Creek,Saluda,Tributary Saluda,"WU/Regulation, SW Assessments, Flood Frequency/Forecasting, Water Quality",Real Time Discharge,Yes
+21,Ashley River,Santee,Mainstem,Coastal Studies,Real Time Stage,Yes
+22,Chauga River,Savannah,Tributary to Lake Hartwell,"SW Assessments, DNR Fisheries",Real Time Discharge,Yes
+23,Eastatoe Creek,Savannah,Headwater Tributary to Lake Keowee,"SW Assessments, DNR Fisheries, lack of gages in Blue Ridge",Real Time Discharge,Yes
+28,Congaree River,Saluda,Above Wateree River Confluence,SW Assessments,Real Time Stage,Yes
+32,Pee Dee River,Pee Dee,Mainstem near NC-SC border,SW Assessments,Real Time Discharge,Yes
+35,Edisto River,Edisto,"Mainstem, US 17","DOT, Forecasting",Rapid Deployment Gage,Yes
+36,Edisto River,Edisto,"Mainstem, I-95","DOT,  Forecasting",Real Time Discharge,Yes
+37,Pee Dee River,Pee Dee,"Mainstem, I-95","DOT, Forecasting","Real Time Stage, Pier Scour",Yes
+38,Pee Dee/Waccamaw,Pee Dee,US 17,"DOT, Forecasting",Real Time Stage,Yes
+39,Lynches River,Pee Dee,"Mainstem, I-95","DOT, Forecasting","Real Time Stage, Pier Scour",Yes
+40,Lynches River,Pee Dee,"Mainstem, SC 41/51","DOT, Forecasting",Rapid Deployment Gage,Yes
+41,Black River,Pee Dee,"Mainstem, SC 51","DOT, Forecasting",Rapid Deployment Gage,Yes
+42,Black River,Pee Dee,"Mainstem, US 701","DOT, Flood Forecasting, Coastal Studies",Rapid Deployment Gage,Yes
+43,Lumber River,Pee Dee,"Mainstem, SC 9/US 76","DOT, Flood Forecasting, SW Assessments",Real Time Discharge,Yes
+44,Little Pee Dee River,Pee Dee,"Mainstem, US 378","DOT, Flood Frequency/Forecasting",Rapid Deployment Gage,Yes
+45,Pocotaligo River,Pee Dee,"Tributary to Black River, I-95","DOT, Flood Frequency/Forecasting, SW Assessments","Real Time Stage, Pier Scour",Yes
+47,Saluda River,Saluda,"Mainstem, I-26 (I-20)",Flood Forecasting,"Real Time Discharge, Installation site upstream on I-20 crossing",Yes
+48,Coronaca Creek,Saluda,Tributary to Wilson Creek,Flood Forecasting,Real Time Discharge,Yes
+49,Little River,Saluda,Reach between City of Laurens and Newberry County Line,Flood Forecasting,Real Time Discharge,Yes
+51,French Quarter Creek,Santee,Tributary to East Branch Cooper River,Flood Forecasting,Real Time Stage,Yes
+57,Steven's Creek,Savannah,"Mainstem, Woodlawn Rd",Flood Forecasting,Real Time Stage,Yes
+60,Pee Dee River,Pee Dee,"Mainstem, US 15/401",Flood Forecasting,Rapid Deployment Gage,Yes
+67,North Fork Edisto River,Edisto,"Mainstem, Hwy 321 or Slab Landing Rd",Flood Forecasting,Real Time Discharge,Yes
+77,Pacolet River,Broad,"USGS 2156370, Pacolet River near Saratt, SC","SW Assessments, Sedimentation Studies, Flood Forecasting",Real Time Discharge,Yes
+78,North Tyger River,Broad,"USGS 2157000, North Tyger River near Fairmont, SC","Flood Frequency/Forecasting, SW Assessments, POR",Real Time Discharge,Yes
+79,South Tyger River,Broad,"USGS 2159000, South Tyger River near Woodruff, SC","Flood Frequency, DNR Fisheries, SW Assessments, POR","Real Time Discharge, Installation at USGS 2158408 upstream",Yes
+80,Tyger River,Broad,"USGS 2159500, Tyger River near Woodruff, SC","WU/Regulation, SW Assessments, POR",Real Time Discharge,Yes
+82,Fairforest Creek,Broad,"USGS 2160000, Fairforest Creek near Union, SC","Flood Frequency, DNR Fisheries, SW Assessments, POR",Real Time Discharge,Yes
+86,Fishing Creek,Catawba,"USGS, 2147403, Fishing Creek below Fort Lawn, SC","SW Assessments, Lack of gages in middle basin",Real Time Discharge,Yes
+90,Edisto River,Edisto,"USGS 2174000, Edisto River near Branchville, SC","SW Assessments, Flood Forecasting",Real Time Discharge,Yes
+92,Little Pee Dee River,Pee Dee,"USGS 2132500, Little Pee Dee River near Dillon, SC",Flood Forecasting,Real Time Discharge,Yes
+105,Upper Three Runs,Savannah,"USGS 2197315, Upper Three Runs at Road A (SRS), SC","SW Assessments, DNR Fisheries, POR","Real Time Discharge, Installation site upstream of original recommendation",Yes
