@@ -1,0 +1,26 @@
+.read-more-btn {
+    position: absolute;
+    bottom:10px;
+    z-index: 2;
+}
+.edisto-box-text{
+    padding-bottom:40px;
+}
+
+.closed {
+    overflow: hidden;
+}
+
+.closed::after {
+    position : absolute;
+    z-index  : 1;
+}
+
+.edisto-box {
+  position: relative;
+}
+ 
+.edisto-box::before {
+  content: '';
+  position: absolute;
+}
