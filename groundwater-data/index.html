@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="SCDNR Groundwater Data View and Download">
+    <meta name="author" content="South Carolina Department of Natural Resources - Hydrology Section">
+
+    <title>Groundwater Data - SCDNR</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- leaflet, ESRI leaflet, and plugin css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/Leaflet/Leaflet.markercluster/v1.0.0-rc.1/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/Leaflet/Leaflet.markercluster/v1.0.0-rc.1/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.6/dist/esri-leaflet-geocoder.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
+    
+    <!-- font awesome css -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    
+    <!-- CSS dygraph -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css" />
+    
+     <!-- CSS for this application -->
+    <link href="css/gw.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+   <nav class="navbar navbar-expand-lg text-white fixed-top">
+        <div class="container">
+            <a href="http://www.dnr.sc.gov/"><img src="../images/dnr-logo-small.gif" id="nav-logo" alt="scdnr-logo"></a>
+            <a class="navbar-brand ml-5 pl-5 pl-md-1" href="../index.html">SCDNR Hydrology</a>
+            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../about.html">About Us</a>
+                    </li>
+					<!--Data Dropdown-->
+					<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownDataOne" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Water Planning</a>
+						<div class="dropdown-menu" aria-labelledby="dropdownDataOne">
+						<a class="dropdown-item" href="../water-planning.html">Overview</a>
+						<a class="dropdown-item" href="../state-and-river-basin-planning.html">State and River Basin Planning</a>
+						<a class="dropdown-item" href="../edisto-basin-planning.html">Edisto Basin Planning</a>
+						<a class="dropdown-item" href="../broad-basin-planning.html">Broad Basin Planning</a>
+						<a class="dropdown-item" href="../water-demand.html">Water Demand Projections</a>
+						<a class="dropdown-item" href="../surface-water-models.html">Surface Water Models</a>
+						<a class="dropdown-item" href="../groundwater-models.html">Groundwater Models</a>
+						</div>
+                    </li>
+					<!--Data Dropdown Done-->
+					<!--Data Dropdown-->
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="dropdownDataTwo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Programs</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownDataTwo">
+					<a class="dropdown-item" href="../groundwater.html">
+					Groundwater</a>
+					<a class="dropdown-item" href="../surface-water.html">
+					Surface Water</a>
+					</div>
+					</li>
+					<!--Data Dropdown Done-->	
+					<!--Data Dropdown-->
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="dropdownDataThree" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownDataThree">
+					<a class="dropdown-item" href="">
+					Groundwater Level Data</a>
+					<a class="dropdown-item" href="../geophysical-logs.html">
+					Geophysical Logs</a>
+					<a class="dropdown-item" href="../well-database.html">
+					Coastal Plain Well Database</a>
+					<a class="dropdown-item" href="../streamflow-and-lake-levels.html">
+					Streamflow and Lake Levels</a>
+					</div>
+					</li>
+					<!--Data Dropdown Done-->
+                     <li class="nav-item">
+                        <a class="nav-link" href="../publications.html">Publications</a>
+                    </li>					
+                     <li class="nav-item">
+                        <a class="nav-link" href="https://calendar.google.com/calendar/embed?src=scdnrhydrology%40gmail.com&ctz=America%2FNew_York">Calendar</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header with Background Image -->
+    <header class="business-header d-print-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 my-sm-4 pt-3 pt-sm-0 background-text">
+                    <h1 class="page-header">Groundwater Data</h1>
+                    <p class="text-white lead">View and download groundwater-level data from the SCDNR groundwater monitoring network.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+		
+       <div class="row white-bg d-print-none">
+            <div class="col-lg-12 toggler">
+                <h2>Overview</h2>
+                <p>Use the data viewer below to view or download groundwater data from the SCDNR groundwater monitoring network. Daily average groundwater levels are provided in feet below land surface and are calculated for each day missing 7 or fewer hourly measurements. Manual measurements in feet below land surface also are available for review and download. In the case of flowing wells, where water levels rise above land surface, negative water-level values indicate water levels are above rather than below land surface. Data downloaded from this site are saved in a CSV file format.</p>
+				<p>For any issues regarding viewing or downloading groundwater data, please contact Josh Williams (<a href="mailto:WilliamsJM@dnr.sc.gov">williamsjm@dnr.sc.gov</a>).</p>
+            </div>
+        </div>		
+		
+		<!-- Well Legend Modal -->
+        <div class="modal fade" id="legend-modal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Aquifer Legend</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <style>
+                      img {
+                          height:15px;
+                      }
+                  </style>
+                <table>
+                <tbody>
+                <tr>
+                <td><img class="m-2" src="image/shallow.png" alt="shallow aquifer icon"></td>
+                <td>Shallow Aquifer</td>
+                </tr>
+                <tr>
+                <td><img class="m-2" src="image/crys.png" alt="crystalline rock icon"></td>
+                <td>Crystalline Rock</td>
+                </tr>
+                <tr>
+                <td><img class="m-2" src="image/gordon.png" alt="gordon aquifer icon"></td>
+                <td>Gordon</td>
+                </tr>
+                <tr>
+                <td><img class="m-2" src="image/upflo.png" alt="upper floridan aquifer icon"></td>
+                <td>Upper Floridan</td>
+                </tr>
+                <tr>
+                <td><img class="m-2" src="image/midflo.png" alt="middle floridan aquifer icon"></td>
+                <td>Middle Floridan</td>
+                </tr>
+                <tr>
+                <td><img class="m-2" src="image/mcqueen.png" alt="mcqueen branc aquifer icon"></td>
+                <td>McQueen Branch</td>
+                </tr>
+                <tr>
+                <td><img class="m-2" src="image/charleston.png" alt="charleston aquifer icon"></td>
+                <td>Charleston</td>
+                </tr>
+                <tr>
+                <td><img class="m-2" src="image/gramling.png" alt="gramling aquifer icon"></td>
+                <td>Gramling</td>
+                </tr>
+                <tr>
+                <td><img class="m-2" src="image/gram_con.png" alt="gramlin confining unit icon"></td>
+                <td>Gramling Confining</td>
+                </tr>
+                <tr>
+                <td><img class="m-2" src="image/crouch.png" alt="crouch branch aquifer icon"></td>
+                <td>Crouch Branch</td>
+                </tr>
+                <tr>
+                <td><img class="m-2" src="image/cluster.png" alt="cluster site icon"></td>
+                <td>Cluster Site (multiple wells at a site)</td>
+                </tr>
+                </tbody>
+                </table>     
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="main" class="row white-bg ">
+            <div class="col-lg-12 m-0 p-0">
+                <div id="map">
+					<div class="pt-2 d-print-none" id="table">
+						<div id="close-tab" class="d-inline">
+							<p class="text-center mt-1">Selected Well <i id="arrow-down" class="fas fa-angle-down ml-4 mr-0"></i><i id="arrow-up" class="fas fa-angle-up ml-4 mr-0"></i></p>
+						</div>
+						<div id="well-info" class="row mx-2">
+							<div class="col">
+								<h5>Well ID</h5>
+								<p id="id"></p>
+							</div>
+							<div class="col">
+								<h5>Aquifer</h5>
+								<p id="aq"></p>
+							</div>
+                            <div class="w-100 d-lg-none"></div>
+							<div class="col">
+								<h5>Well Depth</h5>
+								<p id="wd"></p>
+							</div>
+							<div class="col">
+								<h5>Screen Depth</h5>
+								<p id="sd"></p>
+							</div>
+                            <div class="w-100 d-lg-none"></div>
+							<div class="col">
+								<h5>Elevation</h5>
+								<p id="elev"></p>
+							</div>
+							<div class="col my-3">
+								<button id="getdata" class="btn btn-primary" disabled title="Select a well on the map.">Get Data</button>
+							</div>
+							
+						</div>
+					</div>
+                    
+				</div> 
+               
+				<p class='ml-1 mt-2 mb-0 h6 d-print-none'>Wells are color-coded by aquifer. <a href="#" data-toggle="modal" data-target="#legend-modal">View Legend</a>.</p>
+			</div>
+        </div>
+        
+        <div class="white-bg">
+            <div id="hgdiv">
+                <h3>Hydrograph</h3>
+                <h4 class="mt-2"><span id="wellTitle" style="color:#333;">Select a well from the map.</span><span id="wellAq" style="color:#333;"></span><span id="loading" style="color:#333;"> --- Getting data...</span></h4>
+
+                <div class="row mt-4" id="hydrolegend">                
+                    <div class="col-lg-3 d-inline-flex">
+                        <img alt="light blue circle" src="image/adr.png" />
+                        <p>Daily Average Water Levels</p>
+                    </div>
+                    <div class="col-lg-4 d-inline-flex">
+                        <img alt="dark blue circle" src="image/manual.png" />
+                        <p>Manual Water Levels - <button class="btn btn-sm btn-outline-primary d-print-none" role="button" id="manualview"><span id="manual-show">Hide</span></button></p>
+                    </div>
+                </div>
+                <div class="row px-3" pb-3>
+                    <!--<div class="lds-ring"><div></div><div></div><div></div><div></div></div>-->
+                    <div class="col-lg-12 p-0" id="chart">
+                    </div>
+                </div>
+                    <div id="print-hg" class="text-right d-none">
+                        <button class="btn btn-sm btn-outline-primary d-print-none m-2" title="Print hydrograph." role="button" id="print-hg-btn">
+                            Print <i class="fas fa-print fa-lg mx-2"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-secondary d-print-none m-2" title="Clear hydrograph." role="button" id="clear-hg-btn">
+                            Clear <i class="fas fa-times fa-lg mx-2"></i>
+                        </button>
+                    </div>
+            </div>
+            <div class="d-print-none" id="options">
+                <h3>Custom Axis Options</h3>
+                <p class="ml-1">Set custom range values for the X and Y axes of the hydrograph. You can click and drag your cursor on the hydrograph to select a custom date range. Double-click the chart to return to the full period of record. </p>
+                <div class="row ml-lg-4 ml-1 mb-4">
+                    <div class="col-lg-5" id="datefilter">
+                        <h4>Date Range (X-Axis)</h4>
+                        <form class="form-inline">
+                            <style>
+                                #startdate {margin-left: 15px;}
+                                #enddate{margin-left: 21px;}
+                            </style>
+                            <div class="form-group">
+                                <label for="startdate">Start Date</label>
+                                <input type="date" class="form-control" id="startdate" placeholder="mm/dd/yyyy" disabled>
+                            </div>
+                            <div class="form-group mt-1">
+                                <label for="enddate">End Date</label>
+                                <input type="date" class="form-control" id="enddate" placeholder="mm/dd/yyyy" disabled>
+                            </div> 
+                        </form>
+                        <div class="button-group my-3">
+                                <button id="filter" type="button" class="btn btn-outline-primary " disabled>Update</button>
+                                <button id="reset" type="button" class="btn btn-outline-success 2" disabled>Full Record</button>
+                        </div>   
+
+                    </div>
+                    <div class="col-lg-4 mt-4 mt-lg-0" id="axis">
+                        <h4>Value Range (Y-Axis)</h4>
+                        <form class="form-inline">
+                            <style>
+                                #upper {margin-left: 15px;}
+                                #lower {margin-left: 17px;}
+                            </style>
+                            <div role="group" class="form-group" id="upper-group">
+                                <label for="upper">Upper</label>
+                                <input type="number" class="form-control" step="0.1" id="upper" placeholder="" disabled>
+                            </div>
+                            <div role="group" class="form-group mt-1" id="lower-group">
+                                <label for="lower">Lower</label>
+                                <input type="number" class="form-control" step="0.1" id="lower" placeholder="" disabled>
+                            </div>
+                           </form>
+                         <div class="button-group my-3">
+                            <button id="y-set" type="button" class="btn btn-outline-primary " disabled>Update</button>
+                            <button id="y-clear" type="button" class="btn btn-outline-success " disabled>Default</button>
+                        </div> 
+                    </div>
+                    
+                </div>
+                
+                <h3>Download Data</h3>
+                <p class="ml-1">Daily water level and manual measurement data are downloaded in a CSV format. If 'Selected Period Only' is chosen, the downloaded data will correspond to the dates shown in the Date Range option and X-Axis on the hydrograph.</p>
+                <div class="row mt-4 ml-lg-3">
+                    <div class="col-lg-12">
+                        <div class="form-check">
+                            <input class="mx-1 form-check-input" type="radio" id="fullrecord" name="record" value="full" checked>
+                            <label class="mx-2 form-check-label">Full Period of Record</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="mx-1 form-check-input" type="radio" id="select" name="record" value="selected">
+                            <label class="mx-2 form-check-label">Selected Period Only (dates above)</label>
+                        </div>
+                        <div class="my-2" id="buttons">
+                            <button class="btn btn-primary" disabled id="dailydl" title="Select a well from the map to download data."><i class="fa fa-arrow-circle-down" aria-hidden="true"></i>Download Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+		
+		<div class="row white-bg d-print-none">
+
+                <h4>Disclaimer</h4>
+                <p style="font-size:80%;">Data presented on this web site may have been retrieved partially or entirely from several sources including federal or other state agencies. SCDNR makes every effort to provide accurate and complete information, however, the database is a "work in progress" and updates will occur regularly. In no event should the South Carolina Department of Natural Resources or any contributing agencies be liable for any direct or indirect, incidental, or other damages arising from the use of these data. SCDNR does not warrant, guarantee, or make any representations regarding the use, or the results of the use, of the information provided to you by the Department in terms of correctness, accuracy, reliability, timeliness or otherwise. The entire risk as to the results and performance of any information obtained from the SCDNR is entirely assumed by the recipient. SCDNR welcomes suggestions on how to improve our home page and correct errors.</p>
+                
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 ">
+        <div class="container">
+        <h5>SCDNR Hydrology Section</h5>
+            <div class="row mt-4">
+                
+                <div class="col-lg-4 pr-4 sitemap">
+                    <h6>Hydrology Home</h6>
+                    <ul>
+                        <li><a href="../index.html">Home Page</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../hydrology-news.html">Hydrology News</a></li>
+                        <li><a href="../publications.html">Publications</a></li>
+						<li><a href="https://calendar.google.com/calendar/embed?src=scdnrhydrology%40gmail.com&ctz=America%2FNew_York">Calendar</a></li>
+                    </ul>
+                    <h6>Water Planning</h6>
+                    <ul>
+                        <li><a href="../water-planning.html">Water Planning Home</a></li>
+                        <li><a href="../surface-water-models.html">Surface Water Models</a></li>
+                        <li><a href="../groundwater-models.html">Groundwater Models</a></li>
+                        <li><a href="../water-demand.html">Water Demand Projections</a></li>
+                        <li><a href="../swam-models.html">Simplified Water Allocation Models (SWAM)</a></li>
+                        <li><a href="../state-and-river-basin-planning.html">State and River Basin Planning</a></li>
+                            <ul>
+                                <li><a href="../water-planning-framework.html">South Carolina State Water Planning Framework</a></li>
+								<li><a href="../ppac.html">Planning Process Advisory Committee</a></li>
+                                <li><a href="../edisto-basin-planning.html">Edisto Basin Planning</a></li>
+									<ul>
+										<li><a href="edisto-basin-meetings.html">Edisto Basin Planning Meetings</a></li>
+										<li><a href="edisto-basin-council.html">Edisto River Basin Council</a></li>
+									</ul>
+								<li><a href="../broad-basin-planning.html">Broad Basin Planning</a></li>
+                                <li><a href="../faq.html">Frequently Asked Questions</a></li>
+                            </ul>						
+                    </ul>
+                </div>
+                   
+                <div class="col-lg-4 pl-lg-4 sitemap">
+				   <h6>Data</h6>
+                    <ul>
+                        <li><a href="">Groundwater Level Data</a></li>
+                        <li><a href="../geophysical-logs.html">Geophysical Logs</a></li>
+                        <li><a href="../well-database.html">Coastal Plain Water Well Database</a></li>
+                        <li><a href="../streamflow-and-lake-levels.html">Streamflow and Lake Level Data</a></li>						
+                    </ul>
+                    <h6>Groundwater Program</h6>
+                    <ul>
+                        <li><a href="../groundwater.html">Groundwater Program Home</a></li>
+                        <li><a href="../groundwater-level-monitoring-network.html">Groundwater Level Monitoring Network</a></li>
+                        <li><a href="../well-database.html">Coastal Plain Water Well Database</a></li>
+                        <li><a href="../pot-mapping.html">Potentiometric Mapping</a></li>
+                        <li><a href="../geophysical-logs.html">Geophysical Logs</a></li>
+                        <li><a href="../aquifers.html">Aquifer Delineation</a></li>
+                        <li><a href="../aquifer-properties.html">Aquifer Properties</a></li>
+                        <li><a href="../groundwater-models.html">Groundwater Models</a></li>
+                        <li><a href="../saltwater-intrusion-monitoring.html">Saltwater Intrusion Monitoring Network</a></li>
+                        <li><a href="../groundwater-drought-monitoring-network.html">Groundwater Drought Monitoring Network</a></li>						
+                    </ul>
+                    <h6>Surface Water Program</h6>
+                    <ul>
+                        <li><a href="../surface-water.html">Surface Water Home</a></li>
+                        <li><a href="../surface-water-models.html">Surface Water Models</a></li>
+                        <li><a href="../swam-models.html">Simplified Water Allocation Models (SWAM)</a></li>
+                        <li><a href="../surface-water-monitoring.html">Surface Water Monitoring Initiatives</a></li>
+                            <ul>
+                                <li><a href="../streamflow-and-lake-levels.html">Streamflow and Lake Level Data</a></li>
+                                <li><a href="../streamflow-workshops.html">Streamflow Monitoring Workshops</a></li>
+                            </ul>
+                        	
+                        						
+                    </ul>
+                </div>
+                <div class="col-lg-4 pl-lg-5 ">                
+                    <p>South Carolina Department of<br /> Natural Resources<br>
+                    Land, Water, and Conservation Division<br>
+                        1000 Assembly Street<br>
+                        Columbia, SC 29201<br>
+                        <a href="http://hydrology.dnr.sc.gov/">http://hydrology.dnr.sc.gov/</a>
+                    </p>
+                    <a href="http://dnr.sc.gov/"><img src="../images/dnr-logo-small.gif" alt="SC Department of Natural Resources logo." class="img-fluid my-3 footer-logo" id="dnr-logo"></a>
+                    <p class="mt-3">Copyright © 
+                        <script type="text/javascript">
+                            document.write(new Date().getFullYear());
+                        </script>
+                    </p>
+                </div>
+            </div>
+            
+        </div>        
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- font awesome -->
+    <script src="https://use.fontawesome.com/b4f8eb2c18.js"></script>
+    
+    <!--leaflet stuff-->
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/esri-leaflet@2.0.3"></script>
+    <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.6"></script>
+    <script src="https://cdn.rawgit.com/Leaflet/Leaflet.markercluster/v1.0.0-rc.1/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/esri-leaflet-cluster@2.0.0"></script>
+    <script src="https://unpkg.com/leaflet-gesture-handling"></script>
+    
+    <!-- dygraph for the hydrograph, papaParse for the json and csv parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js"></script>
+    <script src="js/papaparse.min.js"></script>
+
+    <!-- JS for this application -->
+    <script src="js/gw.js"></script>
+    
+    
+</body>
+
+</html>
